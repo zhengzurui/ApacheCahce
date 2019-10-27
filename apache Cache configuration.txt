@@ -1,0 +1,22 @@
+
+
+====================================================================================================================================================
+
+
+#LoadModule cache_module modules/mod_cache.so  // 去掉前面的# 号
+#LoadModule disk_cache_module modules/mod_disk_cache.so  // 去掉前面的# 号
+ 缓存文件所在的目录，运行 Apache 的用户（如daemon 或 nobody）要能对其进行读写，如果不清楚的话可以直接设置成 777，请手动建立该目录并设置好访问权限
+
+<IfModule mod_cache.c>
+CacheDefaultExpire  36000
+CacheMaxExpire  86400
+CacheLastModifiedFactor  0.1
+<IfModule mod_cache_disk.c>
+CacheRoot /home/WebCacheFile
+CacheEnable disk /
+CacheDirLevels 5
+CacheDirLength 4
+CacheMaxFileSize 104857600
+CacheMinFileSize 1
+</IfModule> 
+</IfModule>

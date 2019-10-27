@@ -1,0 +1,28 @@
+当然，您不想在每次重新启动服务器时手动启动htcacheclean - 因此我们编辑/etc/rc.local ...
+
+
+
+/etc/rc.d/rc.local
+
+
+...并在出口0行之前添加以下行：
+
+[...]
+/usr/local/apache/bin/htcacheclean -d 1440 -n -t -p /home/WebCacheFile -l 1024M -i
+[...]
+每次启动服务器时，都会自动启动htcacheclean 。
+
+
+给予  /etc/rc.d/rc.local  文件权限
+
+chmod +x /etc/rc.d/rc.local
+chmod +x /usr/local/apache/bin/htcacheclean
+chmod +x /home/WebCacheFile
+
+
+命令验证
+
+查看进程：
+ps -ef
+
+/home/WebCacheFile缓存生效
